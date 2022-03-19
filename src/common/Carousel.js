@@ -56,6 +56,7 @@ function Carousel() {
     <Box sx={{
       marginLeft: 'auto',
       marginRight: 'auto',
+      marginTop: '0.4em',
       display: 'block',
       overflow: 'hidden',
       width: '60%',
@@ -71,7 +72,6 @@ function Carousel() {
           bgcolor: 'background.default',
         }}
       >
-        <Typography>{images[activeStep].label}</Typography>
       </Paper>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -101,6 +101,7 @@ function Carousel() {
       <MobileStepper
         steps={maxSteps}
         position="static"
+        sx={{marginLeft:'auto', marginRight:'auto', maxWidth:'400px', flexGrow: 1 }}
         activeStep={activeStep}
         nextButton={
           <Button

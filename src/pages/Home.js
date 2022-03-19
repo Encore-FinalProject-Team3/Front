@@ -4,7 +4,7 @@ import Carousel from '../common/Carousel';
 export default function Home() {
   return (  
     <div>
-      <Carousel />
+      <Carousel style={{marginTop:'10'}} />
     </div>
   )
 };

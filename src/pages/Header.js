@@ -12,49 +12,50 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
-import FitbitIcon from '@mui/icons-material/Fitbit';
 import ModalLogin from './ModalLogin';
 
-
-const pages = ['지식공유', '중고거래', '코칭신청'];
+const pages = [
+  {to: '/FreeBoard', name: '지식공유'},
+  {to: '/UsedBoard', name: '중고거래'},
+  {to: '/', name: '코칭신청'}
+];
 const settings = ['마이페이지', '쪽찌함', '코칭/분석', '로그아웃'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+  
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-
+  
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
+  
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  
   return (
     <AppBar position="static" color="primary" enableColorOnDark>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to="/" sx={{ display: { xs: 'none', md: 'flex' } }}>
-          <FitbitIcon sx={{ display: { xs: 'none', md: 'flex' } }}/>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            &nbsp;Fit Box
+            Fit Box
           </Typography>
           </Link>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: {xs:'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -79,40 +80,42 @@ const ResponsiveAppBar = () => {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+              
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.to} onClick={handleCloseNavMenu}>
+                <Link to={page.to}>
+                  <Button>
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </Button>
+                </Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Link to="/" sx={{ display: { xs: 'flex', md: 'none' } }}>
-          <FitbitIcon sx={{ display: { xs: 'flex', md: 'none' } }}/>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            &nbsp;Fit Box
+            Fit Box
           </Typography>
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
+              <Link to={page.to}>
               <Button
-                key={page}
+                key={page.to}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.name}
               </Button>
+              </Link>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Button sx={{marginRight:3}} size="small" color="inherit" onClick={ModalLogin}>로그인/회원가입</Button>
             <Tooltip title="Open settings">
@@ -148,5 +151,4 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
-
 export default ResponsiveAppBar;

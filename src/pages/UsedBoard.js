@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import {
   DataGrid,
@@ -11,6 +12,12 @@ import { useDemoData } from '@mui/x-data-grid-generator';
 import { styled } from '@mui/material/styles';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
+import Grid from '@mui/material/Grid';
+import { MenuList } from '@material-ui/core';
+import Divider from '@mui/material/Divider';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+
 
 function customCheckbox(theme) {
   return {
@@ -57,7 +64,7 @@ function customCheckbox(theme) {
 }
 
 const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
-  border: 0,
+  border: 1,
   color:
     theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.85)',
   fontFamily: [
@@ -95,7 +102,7 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
       theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.65)',
   },
   '& .MuiPaginationItem-root': {
-    borderRadius: 0,
+    borderRadius: 6,
   },
   ...customCheckbox(theme),
 }));
@@ -119,30 +126,63 @@ function CustomPagination() {
   );
 }
 
-export default function UsedBaord() {
+export default function UsedBoard() {
   const [nbRows, setNbRows] = React.useState(5);
   const removeRow = () => setNbRows((x) => Math.max(0, x - 1));
   const addRow = () => setNbRows((x) => Math.min(100, x + 1));
 
   const { data } = useDemoData({
     dataSet: 'Commodity',
-    rowLength: 50,
-    maxColumns: 10,
+    rowLength: 100,
+    maxColumns: 5,
   });
 
   return (
-    <div style={{ width: '100%' }}>
-      <StyledDataGrid autoHeight
-        components={{
-          Pagination: CustomPagination,
-        }}
-      {...data} rows={data.rows.slice(0, nbRows)} />
-      <Button variant="outlined" onClick={addRow}>
-        등록
-      </Button>
-      <Button variant="outlined" onClick={removeRow}>
-        삭제
-      </Button>
+    <div>
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+          <MenuList style={{display:'block', marginLeft:'auto', marginRight:'auto'}}>
+              <MenuItem>
+                <ListItemText inset>Single</ListItemText>
+              </MenuItem>
+              <MenuItem>
+                <ListItemText inset>1.15</ListItemText>
+              </MenuItem>
+              <MenuItem>
+                <ListItemText inset>Double</ListItemText>
+              </MenuItem>
+              <MenuItem>
+                Custom: 1.2
+              </MenuItem>
+            <Divider />
+              <MenuItem>
+                <ListItemText>Add space before paragraph</ListItemText>
+              </MenuItem>
+              <MenuItem>
+                <ListItemText>Add space after paragraph</ListItemText>
+              </MenuItem>
+            <Divider />
+            <MenuItem>
+              <ListItemText>Custom spacing...</ListItemText>
+            </MenuItem>
+          </MenuList>
+        </Grid>
+        <Grid item style={{marginLeft:'auto', marginRight:'auto', display:'block', width: '80%' }} xs={10}>
+          <StyledDataGrid autoHeight
+            components={{
+              Pagination: CustomPagination,
+              }}
+          {...data} rows={data.rows.slice(0, nbRows)} />
+          <Button variant="outlined" onClick={removeRow}>
+            검색
+          </Button>
+          <Link to='/createBoard'>
+            <Button variant="outlined">
+              글쓰기
+            </Button>
+          </Link>
+        </Grid>
+      </Grid>
     </div>
   );
 }
