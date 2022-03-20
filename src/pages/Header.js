@@ -17,7 +17,7 @@ import ModalLogin from './ModalLogin';
 const pages = [
   {to: '/FreeBoard', name: '지식공유'},
   {to: '/UsedBoard', name: '중고거래'},
-  {to: '/', name: '코칭신청'}
+  {to: '/CoachingRequest', name: '코칭신청'}
 ];
 const settings = ['마이페이지', '쪽찌함', '코칭/분석', '로그아웃'];
 
@@ -42,7 +42,7 @@ const ResponsiveAppBar = () => {
   };
   
   return (
-    <AppBar position="static" color="primary" enableColorOnDark>
+    <AppBar position="relative" color="primary" enableColorOnDark>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to="/" sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -84,11 +84,9 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page.to} onClick={handleCloseNavMenu}>
-                <Link to={page.to}>
-                  <Button>
+                  <Button href={page.to}>
                     <Typography textAlign="center">{page.name}</Typography>
                   </Button>
-                </Link>
                 </MenuItem>
               ))}
             </Menu>

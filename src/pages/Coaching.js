@@ -1,8 +1,8 @@
 function Coaching() {
   return (
     <div>
-      Coaching
+      MyPage
     </div>
   )
 }
-export default Coaching
+export default Coaching;

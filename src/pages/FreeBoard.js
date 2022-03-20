@@ -17,6 +17,7 @@ import { MenuList } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
+import BoardDetail from './BoardDetail';
 
 
 function customCheckbox(theme) {
@@ -172,7 +173,8 @@ export default function FreeBoard() {
             components={{
               Pagination: CustomPagination,
               }}
-          {...data} rows={data.rows.slice(0, nbRows)} />
+          {...data} rows={data.rows.slice(0, nbRows)}
+          onClick={BoardDetail} />
           <Button variant="outlined" onClick={removeRow}>
             검색
           </Button>

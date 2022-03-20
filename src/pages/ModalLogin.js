@@ -5,9 +5,10 @@ function ModalLogin() {
 
   Swal.fire({
     icon: 'info',
+    // iconHtml: '<img src="https://maxst.icons8.com/vue-static/landings/animated-icons/icons/dumbbell/dumbbell.json">',
     title: 'Fit Box와 함께하세요!',
     html:
-    '지금 바로 <b>신나고 재미있게!</b>, ' +
+    '지금 바로 <b>신나고 재미있게!</b> ' +
     '<br/>여러 사람들과 함께 운동을 즐겨보세요~' +
     '<br/>전문가의 코칭까지 받아볼 수 있는 기회!',
     input: 'email',
@@ -59,7 +60,7 @@ function ModalLogin() {
               })
               .catch(error => {
                 Swal.showValidationMessage(
-                  `Request failed: ${error}`
+                  `비밀번호가 일치하지 않습니다!`
                 )
               })
           }
