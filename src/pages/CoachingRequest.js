@@ -29,6 +29,18 @@ const MenuProps = {
   },
 };
 
+const category =[
+  '축구',
+  '야구',
+  '농구',
+  '배구',
+  '수영',
+  '테니스',
+  '태권도',
+  '스키',
+  '스노우보드'
+]
+
 const names = [
   '조용기',
   '민야령',
@@ -47,10 +59,20 @@ function getStyles(name, personName, theme) {
   };
 }
 
+function getCategoryStyles(category, categoryName, theme) {
+  return {
+    fontWeight:
+    categoryName.indexOf(category) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+
 function CoachingRequest() {
 
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
+  const [categoryName, setCategoryName] = React.useState([]);
 
   const handleChange = (event) => {
     const {
@@ -62,6 +84,17 @@ function CoachingRequest() {
     );
   };
 
+  const categoryHandleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setCategoryName(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
+
+
   return (
     <Box
       sx={{
@@ -72,39 +105,72 @@ function CoachingRequest() {
         maxWidth: '100%',
       }}
     >
-      <Grid container >
-        <FormControl fullWidth>
-          <InputLabel id="demo-multiple-chip-label">강사선택</InputLabel>
-          <Select
-            labelId="demo-multiple-chip-label"
-            id="demo-multiple-chip"
-            multiple
-            value={personName}
-            onChange={handleChange}
-            input={<OutlinedInput id="select-multiple-chip" label="강사선택" />}
-            renderValue={(selected) => (
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
-              </Box>
-            )}
-            MenuProps={MenuProps}
-          >
-            {names.map((name) => (
-              <MenuItem
-                key={name}
-                value={name}
-                style={getStyles(name, personName, theme)}
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <FormControl fullWidth>
+              <InputLabel id="demo-multiple-chip-label">종목선택</InputLabel>
+              <Select
+                labelId="demo-multiple-chip-label"
+                id="demo-multiple-chip"
+                multiple
+                value={categoryName}
+                onChange={categoryHandleChange}
+                input={<OutlinedInput id="select-multiple-chip" label="종목선택" />}
+                renderValue={(selected) => (
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </Box>
+                )}
+                MenuProps={MenuProps}
               >
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+                {category.map((category) => (
+                  <MenuItem
+                    key={category}
+                    value={category}
+                    style={getStyles(category, categoryName, theme)}
+                  >
+                    {category}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-multiple-chip-label">강사선택</InputLabel>
+              <Select
+                labelId="demo-multiple-chip-label"
+                id="demo-multiple-chip"
+                multiple
+                value={personName}
+                onChange={handleChange}
+                input={<OutlinedInput id="select-multiple-chip" label="강사선택" />}
+                renderValue={(selected) => (
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </Box>
+                )}
+                MenuProps={MenuProps}
+              >
+                {names.map((name) => (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    style={getStyles(name, personName, theme)}
+                  >
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
         <div>&nbsp;</div>
         <TextField fullWidth sx={9} label="Title" id="Title" />
-      </Grid>
       <div>&nbsp;</div>
       <TextField fullWidth
           id="filled-multiline-static"
