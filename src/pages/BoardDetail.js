@@ -48,14 +48,25 @@ export default function BoardDetail() {
         marginTop: '0.5em',
         display: 'block',
         maxWidth: '100%',
-        height: 550
+        height: 700
         }} elevation={0}>
+          <TextField
+          fullWidth
+          variant='outlined'
+          id="filled-read-only-input"
+          label="Category"
+          defaultValue="테니스"
+          InputProps={{
+            readOnly: true,
+          }}
+          />
+          <div>&nbsp;</div>
           <TextField
           fullWidth
           variant='filled'
           id="filled-read-only-input"
           label="Title"
-          defaultValue="Hello World"
+          defaultValue="테니스 입문하고 시퍼요"
           InputProps={{
             readOnly: true,
           }}
@@ -67,13 +78,14 @@ export default function BoardDetail() {
           variant='filled'
           id="filled-read-only-input"
           label="Content"
-          minRows={15}
-          defaultValue="Hello World"
+          minRows={18}
+          defaultValue="안녕하세요 일산 사는 재니임미다 테니스 하고 시퍼요"
           InputProps={{
             readOnly: true,
           }}
           />
       </Paper>
+      <Button variant='outlined'>수정</Button>&nbsp;<Button variant='outlined'>삭제</Button>
       <div>&nbsp;</div>
       <Paper sx={{
         p: 2,

@@ -2,13 +2,14 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import { Card } from '@mui/material';
+import { CardActionArea } from '@mui/material';
+
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -16,22 +17,22 @@ const images = [
   {
     label: 'https://google.com',
     imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://cdn.pixabay.com/photo/2017/05/25/15/08/jogging-2343558_1280.jpg',
   },
   {
     label: 'https://naver.com',
     imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://cdn.pixabay.com/photo/2017/04/22/10/15/woman-2250970_1280.jpg',
   },
   {
     label: 'https://github.com',
     imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
+      'https://cdn.pixabay.com/photo/2017/08/07/14/02/man-2604149_1280.jpg',
   },
   {
     label: 'https://youtube.com',
     imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://cdn.pixabay.com/photo/2017/04/27/08/29/man-2264825_1280.jpg',
   },
 ];
 
@@ -69,17 +70,20 @@ function Carousel() {
         {images.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <Box
+              <CardActionArea>
+              <Card
                   component="img"
                   sx={{
                     marginLeft: 'auto',
                     marginRight: 'auto',
                     display: 'block',
                     overflow: 'hidden',
-                    width: '80%',
+                    width: '100%',
                   }}
                   src={step.imgPath}
-              />
+                  href={images.label}
+              ></Card>
+              </CardActionArea>
             ) : null}
           </div>
         ))}

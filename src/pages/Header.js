@@ -19,7 +19,9 @@ const pages = [
   {to: '/CoachingRequest', name: '코칭신청'},
   {to: '/', name: '영상'}
 ];
-const settings = ['마이페이지', '코칭/분석', '로그아웃'];
+const settings = [
+  {to:'/MyPage', name :'마이페이지'},
+  {to:'/', name:'로그아웃'}];
 
 const ResponsiveAppBar = (props) => {
   console.log('ResponsiveAppBar', props)
@@ -104,15 +106,14 @@ const ResponsiveAppBar = (props) => {
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link to={page.to}>
               <Button
+                href={page.to}
                 key={page.to}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.name}
               </Button>
-              </Link>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
@@ -139,8 +140,8 @@ const ResponsiveAppBar = (props) => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.to} onClick={handleCloseUserMenu}>
+                  <Button href={setting.to} textAlign="center">{setting.name}</Button>
                 </MenuItem>
               ))}
             </Menu>
