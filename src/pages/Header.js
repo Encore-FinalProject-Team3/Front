@@ -15,13 +15,14 @@ import Tooltip from '@mui/material/Tooltip';
 import ModalLogin from './ModalLogin';
 
 const pages = [
-  {to: '/FreeBoard', name: '지식공유'},
-  {to: '/UsedBoard', name: '중고거래'},
-  {to: '/', name: '코칭신청'}
+  {to: '/FreeBoard', name: '자유게시판'},
+  {to: '/CoachingRequest', name: '코칭신청'},
+  {to: '/', name: '영상'}
 ];
-const settings = ['마이페이지', '쪽찌함', '코칭/분석', '로그아웃'];
+const settings = ['마이페이지', '코칭/분석', '로그아웃'];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = (props) => {
+  console.log('ResponsiveAppBar', props)
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   
@@ -42,7 +43,7 @@ const ResponsiveAppBar = () => {
   };
   
   return (
-    <AppBar position="static" color="primary" enableColorOnDark>
+    <AppBar position="relative" color="primary" enableColorOnDark>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to="/" sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -84,11 +85,9 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page.to} onClick={handleCloseNavMenu}>
-                <Link to={page.to}>
-                  <Button>
+                  <Button href={page.to}>
                     <Typography textAlign="center">{page.name}</Typography>
                   </Button>
-                </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -117,7 +116,7 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Button sx={{marginRight:3}} size="small" color="inherit" onClick={ModalLogin}>로그인/회원가입</Button>
+            {props.logined ? '' : <Button sx={{marginRight:3}} size="small" color="inherit" onClick={ModalLogin}>로그인/회원가입</Button>}
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />

@@ -1,188 +1,191 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
-import {
-  DataGrid,
-  gridPageCountSelector,
-  gridPageSelector,
-  useGridApiContext,
-  useGridSelector,
-} from '@mui/x-data-grid';
-import { useDemoData } from '@mui/x-data-grid-generator';
-import { styled } from '@mui/material/styles';
-import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
 import Grid from '@mui/material/Grid';
-import { MenuList } from '@material-ui/core';
-import Divider from '@mui/material/Divider';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
+const columns = [
+  { id: 'idx', label: '정렬', minWidth: 70 },
+  { id: 'title', label: '제목', minWidth: 170 },
+  { id: 'createId', label: '작성자', minWidth: 70 },
+  { id: 'createDate', label: '작성일', minWidth: 100 },
+  { id: 'hits', label: '조회수', minWidth: 70 },
+  { id: 'likes', label: '좋아요', minWidth: 70 },
+];
 
-function customCheckbox(theme) {
-  return {
-    '& .MuiCheckbox-root svg': {
-      width: 16,
-      height: 16,
-      backgroundColor: 'transparent',
-      border: `1px solid ${
-        theme.palette.mode === 'light' ? '#d9d9d9' : 'rgb(67, 67, 67)'
-      }`,
-      borderRadius: 2,
-    },
-    '& .MuiCheckbox-root svg path': {
-      display: 'none',
-    },
-    '& .MuiCheckbox-root.Mui-checked:not(.MuiCheckbox-indeterminate) svg': {
-      backgroundColor: '#1890ff',
-      borderColor: '#1890ff',
-    },
-    '& .MuiCheckbox-root.Mui-checked .MuiIconButton-label:after': {
-      position: 'absolute',
-      display: 'table',
-      border: '2px solid #fff',
-      borderTop: 0,
-      borderLeft: 0,
-      transform: 'rotate(45deg) translate(-50%,-50%)',
-      opacity: 1,
-      transition: 'all .2s cubic-bezier(.12,.4,.29,1.46) .1s',
-      content: '""',
-      top: '50%',
-      left: '39%',
-      width: 5.71428571,
-      height: 9.14285714,
-    },
-    '& .MuiCheckbox-root.MuiCheckbox-indeterminate .MuiIconButton-label:after': {
-      width: 8,
-      height: 8,
-      backgroundColor: '#1890ff',
-      transform: 'none',
-      top: '39%',
-      border: 0,
-    },
-  };
+function createData(idx, title, createId, createDate, hits, likes) {
+  return { idx, title, createId, createDate, hits, likes };
 }
 
-const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
-  border: 1,
-  color:
-    theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.85)',
-  fontFamily: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    '"Segoe UI"',
-    'Roboto',
-    '"Helvetica Neue"',
-    'Arial',
-    'sans-serif',
-    '"Apple Color Emoji"',
-    '"Segoe UI Emoji"',
-    '"Segoe UI Symbol"',
-  ].join(','),
-  WebkitFontSmoothing: 'auto',
-  letterSpacing: 'normal',
-  '& .MuiDataGrid-columnsContainer': {
-    backgroundColor: theme.palette.mode === 'light' ? '#fafafa' : '#1d1d1d',
-  },
-  '& .MuiDataGrid-iconSeparator': {
-    display: 'none',
-  },
-  '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
-    borderRight: `1px solid ${
-      theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
-    }`,
-  },
-  '& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell': {
-    borderBottom: `1px solid ${
-      theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
-    }`,
-  },
-  '& .MuiDataGrid-cell': {
-    color:
-      theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.65)',
-  },
-  '& .MuiPaginationItem-root': {
-    borderRadius: 6,
-  },
-  ...customCheckbox(theme),
-}));
+const rows = [
+  createData(1, '안녕하세요', 'jaeny', '2022-03-22', 54, 3),
+  createData(2, 'hello', 'mmimo', '2022-03-22', 12, 1),
+  createData(3, 'bonjour', 'abib', '2022-03-22', 30, 0),
+  createData(4, 'aloha', 'tori', '2022-03-22', 125, 25),
+  createData(5, 'konnitsiha', 'jamie', '2022-03-22', 0, 0),
+  createData(6, 'hello everyone', 'jason', '2022-03-22', 1, 0),
+];
 
-function CustomPagination() {
-  const apiRef = useGridApiContext();
-  const page = useGridSelector(apiRef, gridPageSelector);
-  const pageCount = useGridSelector(apiRef, gridPageCountSelector);
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
   return (
-    <Pagination
-      color="primary"
-      variant="outlined"
-      shape="rounded"
-      page={page + 1}
-      count={pageCount}
-      // @ts-expect-error
-      renderItem={(props2) => <PaginationItem {...props2} disableRipple />}
-      onChange={(event, value) => apiRef.current.setPage(value - 1)}
-    />
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
   );
 }
 
-export default function FreeBoard() {
-  const [nbRows, setNbRows] = React.useState(5);
-  const removeRow = () => setNbRows((x) => Math.max(0, x - 1));
-  const addRow = () => setNbRows((x) => Math.min(100, x + 1));
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
 
-  const { data } = useDemoData({
-    dataSet: 'Commodity',
-    rowLength: 100,
-    maxColumns: 5,
-  });
+function a11yProps(index) {
+  return {
+    id: `vertical-tab-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
+  };
+}
+
+export default function StickyHeadTable() {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  const [valueHorizon, setValueHorizon] = React.useState(0);
+  const [valueVertical, setValueVertical] = React.useState(0);
+
+  const handleChangeVertical = (event, newValueVertical) => {
+    setValueVertical(newValueVertical);
+  };
+
+  const handleChangeHorizontal = (event, newValueHorizon) => {
+    setValueHorizon(newValueHorizon);
+  };
 
   return (
-    <div>
-      <Grid container spacing={2}>
+    <Box>
+      <Tabs
+      value={valueHorizon}
+      onChange={handleChangeHorizontal}
+      variant="scrollable"
+      scrollButtons
+      allowScrollButtonsMobile
+      aria-label="scrollable force tabs example"
+      >
+        <Tab label="지식공유" {...a11yProps(0)} />
+        <Tab label="중고거래" {...a11yProps(1)} />
+        <Tab label="플레이메이트" {...a11yProps(2)} />
+        <Tab label="플레이그라운드" {...a11yProps(3)} />
+      </Tabs>
+      <div>&nbsp;</div>
+      <Grid container spacing={2} sx={{width: '100%', height: 1000}}>
         <Grid item xs={2}>
-          <MenuList style={{display:'block', marginLeft:'auto', marginRight:'auto'}}>
-              <MenuItem>
-                <ListItemText inset>Single</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                <ListItemText inset>1.15</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                <ListItemText inset>Double</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                Custom: 1.2
-              </MenuItem>
-            <Divider />
-              <MenuItem>
-                <ListItemText>Add space before paragraph</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                <ListItemText>Add space after paragraph</ListItemText>
-              </MenuItem>
-            <Divider />
-            <MenuItem>
-              <ListItemText>Custom spacing...</ListItemText>
-            </MenuItem>
-          </MenuList>
+        <Tabs
+            orientation="vertical"
+            variant="scrollable"
+            value={valueVertical}
+            onChange={handleChangeVertical}
+            aria-label="Vertical tabs example"
+            sx={{borderRight: 1, borderColor: 'divider'}}
+          >
+            <Tab label="축구" {...a11yProps(4)} />
+            <Tab label="야구" {...a11yProps(5)} />
+            <Tab label="농구" {...a11yProps(6)} />
+            <Tab label="테니스" {...a11yProps(7)} />
+            <Tab label="수영" {...a11yProps(8)} />
+            <Tab label="태권도" {...a11yProps(9)} />
+            <Tab label="필라테스" {...a11yProps(10)} />
+            <Tab label="자전거" {...a11yProps(11)} />
+        </Tabs>
         </Grid>
-        <Grid item style={{marginLeft:'auto', marginRight:'auto', display:'block', width: '80%' }} xs={10}>
-          <StyledDataGrid autoHeight
-            components={{
-              Pagination: CustomPagination,
-              }}
-          {...data} rows={data.rows.slice(0, nbRows)} />
-          <Button variant="outlined" onClick={removeRow}>
-            검색
-          </Button>
-          <Link to='/createBoard'>
-            <Button variant="outlined">
+        <Grid item xs={10}>
+        <Paper sx={{ marginLeft: 'auto', marginRight: 'auto'}}>
+          <TableContainer>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => {
+                    return (
+                      <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                              {column.format && typeof value === 'number'
+                                ? column.format(value)
+                                : value}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+          <Link to='/createBoard' >
+            <Button variant="outlined" >
               글쓰기
             </Button>
           </Link>
+        </Paper>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }

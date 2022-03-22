@@ -1,11 +1,19 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
+import { styled } from '@mui/material/styles';
+import { Grid } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import FormHelperText from '@mui/material/FormHelperText';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import FreeBoard from './FreeBoard';
+
+const Input = styled('input')({
+  display: 'none',
+});
 
 function CreateBoard() {
   return (
@@ -15,19 +23,35 @@ function CreateBoard() {
         marginTop:'0.7em',
         marginLeft: 'auto',
         marginRight: 'auto',
-        width: 500,
         maxWidth: '100%',
       }}
     >
-      <TextField fullWidth label="title" id="title" />
+      <TextField fullWidth label="Title" id="Title" />
       <div>&nbsp;</div>
-      <TextField fullWidth label="content" id="content" />
+      <TextField fullWidth
+          id="filled-multiline-static"
+          label="Content"
+          multiline
+          rows={10}
+          variant="filled"
+      />
       <div>&nbsp;</div>
-      <div container spacing={2}>
-      <Button item xs={3} variant="outlined" onClick={FreeBoard}>등록</Button>
-      &nbsp;
-      <Button item xs={3} variant="outlined" onClick={FreeBoard}>취소</Button>
-      </div>
+      <Grid container>
+        <Grid item xs={10}>
+          <label htmlFor="icon-button-file">
+            <Input accept="image/*" id="icon-button-file" type="file" />
+            <IconButton color="primary" aria-label="upload picture" component="span">
+              <PhotoCamera />&nbsp;파일첨부
+            </IconButton>
+          </label>
+        </Grid>
+        <Grid item xs={1}>
+          <Button variant="outlined" href='/FreeBoard'>등록</Button>
+        </Grid>
+        <Grid item xs={1}>
+          <Button variant="outlined" onClick={FreeBoard}>취소</Button>
+        </Grid>
+      </Grid>
     </Box>
     
   );

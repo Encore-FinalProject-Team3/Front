@@ -14,22 +14,22 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
+    label: 'https://google.com',
     imgPath:
       'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
   },
   {
-    label: 'Bird',
+    label: 'https://naver.com',
     imgPath:
       'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
   },
   {
-    label: 'Bali, Indonesia',
+    label: 'https://github.com',
     imgPath:
       'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
   },
   {
-    label: 'Goč, Serbia',
+    label: 'https://youtube.com',
     imgPath:
       'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
   },
@@ -54,45 +54,31 @@ function Carousel() {
 
   return (
     <Box sx={{
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      marginTop: '0.4em',
-      display: 'block',
-      overflow: 'hidden',
-      width: '60%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: '0.4em',
+        display: 'block',
+        overflow: 'hidden',
+        width: '70%',
     }}>
-      <Paper
-        square
-        elevation={0}
-        sx={{
-          display: 'block',
-          alignItems: 'center',
-          height: 50,
-          pl: 2,
-          bgcolor: 'background.default',
-        }}
-      >
-      </Paper>
       <AutoPlaySwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={activeStep}
+          onChangeIndex={handleStepChange}
       >
         {images.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
-                component="img"
-                sx={{
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
-                  display: 'block',
-                  overflow: 'hidden',
-                  width: '60%',
-                }}
-                src={step.imgPath}
-                alt={step.label}
+                  component="img"
+                  sx={{
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    display: 'block',
+                    overflow: 'hidden',
+                    width: '80%',
+                  }}
+                  src={step.imgPath}
               />
             ) : null}
           </div>
@@ -112,16 +98,16 @@ function Carousel() {
             Next
             {theme.direction === 'rtl' ? (
               <KeyboardArrowLeft />
-            ) : (
+              ) : (
               <KeyboardArrowRight />
-            )}
+              )}
           </Button>
         }
         backButton={
           <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
             {theme.direction === 'rtl' ? (
               <KeyboardArrowRight />
-            ) : (
+              ) : (
               <KeyboardArrowLeft />
             )}
             Back
