@@ -71,7 +71,7 @@ function a11yProps(index) {
   };
 }
 
-export default function StickyHeadTable() {
+export default function FreeBoard() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

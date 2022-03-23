@@ -8,12 +8,22 @@ const options = {
 export default {
 
   checkEmail: (email) => {
-    return axios.get(`/api/check/${email}`, options)
+    return axios.post(`/api/confirm/`,{
+      email
+    })
   },
 
   signIn: (email, password) => {
     return axios.post('/api/signin', {
       email,
+      password,
+    })
+  },
+
+  signUp: (email, memberName, password) => {
+    return axios.post('/api/signup', {
+      email,
+      memberName,
       password,
     })
   },

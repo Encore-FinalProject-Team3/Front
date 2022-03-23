@@ -13,6 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import ModalLogin from './ModalLogin';
+import Token from '../utils/Token';
 
 const pages = [
   {to: '/FreeBoard', name: '자유게시판'},
@@ -21,7 +22,7 @@ const pages = [
 ];
 const settings = [
   {to:'/MyPage', name :'마이페이지'},
-  {to:'/', name:'로그아웃'}];
+  {to:'Token.delToken', name:'로그아웃'}];
 
 const ResponsiveAppBar = (props) => {
   console.log('ResponsiveAppBar', props)

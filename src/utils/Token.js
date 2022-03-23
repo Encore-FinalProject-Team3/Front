@@ -1,3 +1,4 @@
+import App from "../App"
 
 export default {
   setToken: (token) => {
@@ -8,5 +9,6 @@ export default {
   },
   delToken: () => {
     localStorage.removeItem("fitboxToken")
+    App();
   }
 }
