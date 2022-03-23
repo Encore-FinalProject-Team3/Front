@@ -46,7 +46,7 @@ function App(props) {
     <div className="App">
       <Container fixed >
         <Header logined={logined}/>
-        <Toolbar id="back-to-top-anchor" sx={{display:'flex'}} />
+        <Toolbar id="back-to-top-anchor" sx={{display:'inline'}} />
         <React.Fragment>
         <CssBaseline />
         <Routes>

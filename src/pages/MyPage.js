@@ -104,6 +104,7 @@ export default function StickyHeadTable() {
   return (
     <Box>
       <Button variant='outlined'>마스터 페이지</Button> &nbsp; <Button href='/createBoard' variant='outlined'>영상업로드</Button>
+      <div>&nbsp;</div>
       <Grid container spacing={2} sx={{width: '100%', height: 1000}}>
         <Grid item xs={3}>
           <Card sx={{ maxWidth: 345 }}>
