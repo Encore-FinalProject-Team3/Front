@@ -27,7 +27,7 @@ export default {
       password,
     })
   },
-  getFreeBoard: () => {
+  getFreeBoard: (id) => {
     return axios.get(`/api/board/categories/${id}`, options)
   },
   postFreeBoard: () => {
