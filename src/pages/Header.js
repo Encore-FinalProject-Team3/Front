@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,18 +17,17 @@ import Token from '../utils/Token';
 
 const pages = [
   {to: '/FreeBoard', name: '자유게시판'},
-  {to: '/ExpertList', name: '강사소개'},
-  {to: '/', name: '영상'},
   {to: '/CoachingRequest', name: '코칭신청'},
+  {to: '/', name: '영상'}
 ];
 const settings = [
   {to:'/MyPage', name :'마이페이지'},
   {to:'Token.delToken', name:'로그아웃'}];
 
 const ResponsiveAppBar = (props) => {
-  console.log('ResponsiveAppBar', props)
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navi = useNavigate()
   
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -45,6 +44,10 @@ const ResponsiveAppBar = (props) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const goLogin = () => {
+    navi("/ModalLogin")
+  }
   
   return (
     <AppBar position="relative" color="primary" enableColorOnDark>
@@ -75,13 +78,13 @@ const ResponsiveAppBar = (props) => {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'center',
-                horizontal: 'center',
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'center',
-                horizontal: 'center',
+                vertical: 'top',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
@@ -89,9 +92,9 @@ const ResponsiveAppBar = (props) => {
             >
               {pages.map((page) => (
                 <MenuItem key={page.to} onClick={handleCloseNavMenu}>
-                  <Button href={page.to}>
-                    <Typography textAlign="center">{page.name}</Typography>
-                  </Button>
+                  <Link to={page.to}>
+                    <Typography textalign="center">{page.name}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -108,42 +111,42 @@ const ResponsiveAppBar = (props) => {
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
+              <Link to={page.to}>
               <Button
-                href={page.to}
-                key={page.to}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.name}
               </Button>
+              </Link>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            {props.logined ? '' : <Button sx={{marginRight:3}} size="small" color="inherit" onClick={ModalLogin}>로그인/회원가입</Button>}
-            <Tooltip title="Open settings">
+            {props.logined ? <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
-            </Tooltip>
+            </Tooltip> : <Button sx={{marginRight:3}} size="small" color="inherit" onClick={goLogin}>로그인/회원가입</Button>}
+            
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'center',
-                horizontal: 'center',
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'center',
-                horizontal: 'center',
+                vertical: 'top',
+                horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
                 <MenuItem key={setting.to} onClick={handleCloseUserMenu}>
-                  <Button href={setting.to} textAlign="center">{setting.name}</Button>
+                  <Button href={setting.to} textalign="center">{setting.name}</Button>
                 </MenuItem>
               ))}
             </Menu>

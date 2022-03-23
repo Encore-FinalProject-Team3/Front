@@ -15,7 +15,10 @@ import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import Api from '../utils/Api';
+import { useEffect } from 'react';
 
+/*
 const columns = [
   { id: 'idx', label: '정렬', minWidth: 70 },
   { id: 'title', label: '제목', minWidth: 170 },
@@ -24,6 +27,7 @@ const columns = [
   { id: 'hits', label: '조회수', minWidth: 70 },
   { id: 'likes', label: '좋아요', minWidth: 70 },
 ];
+
 
 function createData(idx, title, createId, createDate, hits, likes) {
   return { idx, title, createId, createDate, hits, likes };
@@ -36,6 +40,15 @@ const rows = [
   createData(4, 'aloha', 'tori', '2022-03-22', 125, 25),
   createData(5, 'konnitsiha', 'jamie', '2022-03-22', 0, 0),
   createData(6, 'hello everyone', 'jason', '2022-03-22', 1, 0),
+];
+*/
+
+const columns = [
+  { id: 'id', label: 'no', minWidth: 50 },
+  { id: 'title', label: '제목', minWidth: 170 },
+  { id: 'memberEmail', label: '작성자', minWidth: 50 },
+  { id: 'createdAt', label: '작성일', minWidth: 50 },
+  { id: 'hit', label: '조회수', minWidth: 70 },
 ];
 
 function TabPanel(props) {
@@ -64,43 +77,86 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
+/*
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
     'aria-controls': `vertical-tabpanel-${index}`,
   };
 }
+*/
 
 export default function FreeBoard() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = React.useState(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [rows, setRows] = React.useState([])
+  const [categories, setCategories] = React.useState([])
+  const [subCategories, setSubCategories] = React.useState([])
+  const [valueHorizon, setValueHorizon] = React.useState(0)
+  const [valueVertical, setValueVertical] = React.useState(0)
 
+  const getBoardData = async (category) => {
+    try {
+      console.log('getBoardData', category)
+      const result = await Api.getFreeBoard()
+      const datas = result.data?.result?.data;
+      if (datas) {
+        setRows(
+          datas.map(r=>{
+            r['memberEmail'] = r.member.email
+            return r
+          })
+        )
+      }
+    } catch {
+      console.error('get board error')
+    }
+  }
+  const getCategories = async () => {
+    try {
+      const result = await Api.getCatetories()
+      if (result.data.success) {
+        setCategories(result.data.result.data || [])
+        if (result.data.result.data[0].children) {
+          setSubCategories(result.data.result.data[0].children)
+          if (result.data.result.data[0].children[0]) {
+            getBoardData(result.data.result.data[0].children[0].id)
+          }
+        }
+      }
+    } catch {
+      console.error('category error')
+    }
+  }
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-  const [valueHorizon, setValueHorizon] = React.useState(0);
-  const [valueVertical, setValueVertical] = React.useState(0);
-
-  const handleChangeVertical = (event, newValueVertical) => {
-    setValueVertical(newValueVertical);
+  
+  const handleChangeVertical = (event, idx) => {
+    setValueVertical(idx);
+    if (categories[idx].children) {
+      setSubCategories(categories[idx].children)
+      if (typeof categories[idx].children.length === 'number' && categories[idx].children.length > 0) {
+        getBoardData(categories[idx].children[valueHorizon].id)
+      }
+    }
+  };
+  const handleChangeHorizontal = (event, idx) => {
+    setValueHorizon(idx);
+    getBoardData(categories[valueVertical].children[idx].id)
   };
 
-  const handleChangeHorizontal = (event, newValueHorizon) => {
-    setValueHorizon(newValueHorizon);
-  };
+  useEffect(() => {
+    getCategories()
+    
+  }, [])
 
   return (
     <Box>
-      <Grid container spacing={2}>
-      <Grid item xs={2}>
-      </Grid>
-      <Grid item xs={10}>
       <Tabs
       value={valueHorizon}
       onChange={handleChangeHorizontal}
@@ -109,13 +165,10 @@ export default function FreeBoard() {
       allowScrollButtonsMobile
       aria-label="scrollable force tabs example"
       >
-        <Tab label="지식공유" {...a11yProps(0)} />
-        <Tab label="중고거래" {...a11yProps(1)} />
-        <Tab label="플레이메이트" {...a11yProps(2)} />
-        <Tab label="플레이그라운드" {...a11yProps(3)} />
+        {subCategories.map(category => (
+          <Tab label={category.name} />
+        ))}
       </Tabs>
-      </Grid>
-      </Grid>
       <div>&nbsp;</div>
       <Grid container spacing={2} sx={{width: '100%', height: 1000}}>
         <Grid item xs={2}>
@@ -127,14 +180,9 @@ export default function FreeBoard() {
             aria-label="Vertical tabs example"
             sx={{borderRight: 1, borderColor: 'divider'}}
           >
-            <Tab label="축구" {...a11yProps(4)} />
-            <Tab label="야구" {...a11yProps(5)} />
-            <Tab label="농구" {...a11yProps(6)} />
-            <Tab label="테니스" {...a11yProps(7)} />
-            <Tab label="수영" {...a11yProps(8)} />
-            <Tab label="태권도" {...a11yProps(9)} />
-            <Tab label="필라테스" {...a11yProps(10)} />
-            <Tab label="자전거" {...a11yProps(11)} />
+            {categories.map(category => (
+              <Tab label={category.name} />
+            ))}
         </Tabs>
         </Grid>
         <Grid item xs={10}>

@@ -2,13 +2,14 @@ import axios from 'axios'
 import Token from './Token'
 
 const options = {
-  headers: `Bearer ${Token.getToken()}`
+  headers: {
+    'Authorization': `Bearer ${Token.getToken()}`
+  },
 }
 
 export default {
-
   checkEmail: (email) => {
-    return axios.post(`/api/confirm/`,{
+    return axios.post(`/api/confirm`,{
       email
     })
   },
@@ -19,7 +20,6 @@ export default {
       password,
     })
   },
-
   signUp: (email, memberName, password) => {
     return axios.post('/api/signup', {
       email,
@@ -27,13 +27,13 @@ export default {
       password,
     })
   },
-
-  getFreeBoard: (params) => {
-    // object params 을 query string parameter 로 변환 <-
-    // 
-    return axios.get('/api/board?keyword=1&limit=5', options)
+  getFreeBoard: () => {
+    return axios.get(`/api/board`, options)
   },
-
   postFreeBoard: () => {
+    return axios.post('/api/board', {title: 'title'}, options)
+  },
+  getCatetories: () => {
+    return axios.get('/api/categories', options)
   },
 }

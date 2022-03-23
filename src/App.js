@@ -27,19 +27,19 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Token from './utils/Token'
-
+import Api from './utils/Api';
 
 
 function App(props) {
   const [userInfo, setUserInfo] = useState({})
   const [logined, setLogined] = useState(false)
+
   useEffect(() => {
     if (Token.getToken()?.length > 0) {
       // if access token
       // api 호출 --> userInfo 
       // setUserInfo()
       setLogined(true)
-
     }
   }, [])
   return (
@@ -50,7 +50,7 @@ function App(props) {
         <React.Fragment>
         <CssBaseline />
         <Routes>
-          <Route path="/ModalLogin" element={<ModalLogin />} />
+          <Route path="/ModalLogin" element={<ModalLogin setLogined={setLogined}/>} />
           <Route path="/" element={<Home />} />
           <Route path="/BoardCard" element={<BoardCard/>} />
           <Route path="/freeBoard" element={<FreeBoard />} />

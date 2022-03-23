@@ -130,7 +130,7 @@ export default function BoardDetail() {
               {otherUser.map((user) => (
                 <MenuItem key={user.to} onClick={handleCloseNavMenu}>
                   <Button href={user.to}>
-                    <Typography textAlign="center">{user.name}</Typography>
+                    <Typography textalign="center">{user.name}</Typography>
                   </Button>
                 </MenuItem>
               ))}
