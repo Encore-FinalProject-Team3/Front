@@ -97,6 +97,10 @@ export default function FreeBoard() {
 
   return (
     <Box>
+      <Grid container spacing={2}>
+      <Grid item xs={2}>
+      </Grid>
+      <Grid item xs={10}>
       <Tabs
       value={valueHorizon}
       onChange={handleChangeHorizontal}
@@ -110,6 +114,8 @@ export default function FreeBoard() {
         <Tab label="플레이메이트" {...a11yProps(2)} />
         <Tab label="플레이그라운드" {...a11yProps(3)} />
       </Tabs>
+      </Grid>
+      </Grid>
       <div>&nbsp;</div>
       <Grid container spacing={2} sx={{width: '100%', height: 1000}}>
         <Grid item xs={2}>

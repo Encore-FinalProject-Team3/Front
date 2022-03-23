@@ -17,8 +17,9 @@ import Token from '../utils/Token';
 
 const pages = [
   {to: '/FreeBoard', name: '자유게시판'},
+  {to: '/ExpertList', name: '강사소개'},
+  {to: '/', name: '영상'},
   {to: '/CoachingRequest', name: '코칭신청'},
-  {to: '/', name: '영상'}
 ];
 const settings = [
   {to:'/MyPage', name :'마이페이지'},
@@ -74,13 +75,13 @@ const ResponsiveAppBar = (props) => {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: 'center',
+                horizontal: 'center',
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: 'center',
+                horizontal: 'center',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
@@ -129,13 +130,13 @@ const ResponsiveAppBar = (props) => {
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: 'center',
+                horizontal: 'center',
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: 'center',
+                horizontal: 'center',
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
