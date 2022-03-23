@@ -10,6 +10,7 @@ import CreateComment from './CreateComment';
 import { TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 import FreeBoard from './FreeBoard';
 import CreateMessage from './CreateMessage';
 
@@ -28,7 +29,15 @@ const otherUser = [
 ];
 
 
+
+
 export default function BoardDetail() {
+
+  const navi = useNavigate()
+
+  const goCreate = () => {
+    navi("/CreateComment")
+  }
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     
@@ -129,9 +138,11 @@ export default function BoardDetail() {
             >
               {otherUser.map((user) => (
                 <MenuItem key={user.to} onClick={handleCloseNavMenu}>
-                  <Button href={user.to}>
-                    <Typography textalign="center">{user.name}</Typography>
-                  </Button>
+                  <Link to={user.to}>
+                    <Button>
+                      <Typography textalign="center">{user.name}</Typography>
+                    </Button>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -151,7 +162,7 @@ export default function BoardDetail() {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography onClick={CreateComment} sx={{cursor:'pointer'}} variant="body2">
+              <Typography onClick={goCreate} sx={{cursor:'pointer'}} variant="body2">
                 Remove
               </Typography>
             </Grid>
@@ -165,7 +176,7 @@ export default function BoardDetail() {
       </Grid>
       </Paper>
       <div>&nbsp;</div>
-      <Button onClick={CreateComment}
+      <Button onClick={goCreate}
         variant="outlined"
         sx ={{
           display:'block',

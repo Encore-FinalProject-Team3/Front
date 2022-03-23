@@ -33,9 +33,29 @@ function ModalLogin({setLogined}) {
           loginID = login;
           return result;
         } catch {
-          Swal.showValidationMessage(
-            `존재하지 않는 회원입니다`
-          )
+          // Swal.showValidationMessage(
+          //   `존재하지 않는 회원입니다`
+          // )
+          const { value: formValues } = await Swal.fire({
+            title: '존재하지 않는 회원입니다',
+            html:
+              '아래 양식을 채워 회원가입을 완료하세요!'+
+              '가입하실 이메일 주소<input id="swal-input1" class="swal2-email">'+
+              '가입자 성함<input id="swal-input2" class="swal2-input">'+
+              '비밀번호<input id="swal-input3" class="swal2-password">',
+            focusConfirm: false,
+            preConfirm: () => {
+              return [
+                document.getElementById('swal-input1').value,
+                document.getElementById('swal-input2').value,
+                document.getElementById('swal-input3').value,
+              ]
+            }
+          })
+          
+          if (formValues) {
+            Swal.fire(JSON.stringify(formValues))
+          }
         }
   
         /**
@@ -93,7 +113,7 @@ function ModalLogin({setLogined}) {
                 )
               }
             }
-              }).then((result) => {
+            }).then((result) => {
                   if (result.isConfirmed) {
                     Swal.mixin({
                       position: 'top-end',

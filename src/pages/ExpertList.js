@@ -8,8 +8,8 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import { red } from '@mui/material/colors';
+import { IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import Avatar from '@mui/material/Avatar';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -78,79 +78,240 @@ export default function ExpertList() {
 
   return (
     <Box>
-      <Tabs
-      value={valueHorizon}
-      onChange={handleChangeHorizontal}
-      variant="scrollable"
-      scrollButtons
-      allowScrollButtonsMobile
-      aria-label="scrollable force tabs example"
-      >
-        <Tab label="인기 강사" {...a11yProps(0)} />
-        <Tab label="신규 강사" {...a11yProps(1)} />
-        <Tab label="이달의 강사" {...a11yProps(2)} />
-      </Tabs>
-      <div>&nbsp;</div>
-      <Grid container spacing={2} sx={{width: '100%', height: 1000}}>
-        <Grid item xs={2}>
-        <Tabs
-            orientation="vertical"
-            variant="scrollable"
-            value={valueVertical}
-            onChange={handleChangeVertical}
-            aria-label="Vertical tabs example"
-            sx={{borderRight: 1, borderColor: 'divider'}}
-          >
-            <Tab label="축구" {...a11yProps(4)} />
-            <Tab label="야구" {...a11yProps(5)} />
-            <Tab label="농구" {...a11yProps(6)} />
-            <Tab label="테니스" {...a11yProps(7)} />
-            <Tab label="수영" {...a11yProps(8)} />
-            <Tab label="태권도" {...a11yProps(9)} />
-            <Tab label="필라테스" {...a11yProps(10)} />
-            <Tab label="자전거" {...a11yProps(11)} />
-        </Tabs>
-        </Grid>
+      <Grid container>
+        <Grid item xs={2}></Grid>
         <Grid item xs={10}>
-        <Paper sx={{ marginLeft: 'auto', marginRight: 'auto'}}>
-        <Grid container >
-            <Card sx={{ maxWidth: 345 }}>
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                    R
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title="너의이름은"
-                subheader="회원"
-              />
-              <CardMedia
-                component="img"
-                height="194"
-                image=""
-                alt=""
-              />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  잘해봅시다 빠샤
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                  <ShareIcon />
-                </IconButton>
-              </CardActions>
-            </Card>
-          </Grid>
-        </Paper>
+          <Tabs
+          value={valueHorizon}
+          onChange={handleChangeHorizontal}
+          variant="scrollable"
+          scrollButtons
+          allowScrollButtonsMobile
+          aria-label="scrollable force tabs example"
+          >
+            <Tab label="인기 강사" {...a11yProps(0)} />
+            <Tab label="신규 강사" {...a11yProps(1)} />
+            <Tab label="이달의 강사" {...a11yProps(2)} />
+          </Tabs>
+        </Grid>
+      </Grid>
+      <div>&nbsp;</div>
+      <Grid container spacing={2}>
+        <Grid xs={4} sx={{mr:'auto', ml:'auto'}}>
+          <Card sx={{ maxWidth: 300 }}>
+            <CardMedia
+              component="img"
+              height=""
+              image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+              alt=""
+            />
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  V
+                </Avatar>
+              }
+              title="조용기 코치"
+              subheader="테니스"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                잘 부탁드립니다!!
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid xs={4} sx={{mr:'auto', ml:'auto'}}>
+          <Card sx={{ maxWidth: 300 }}>
+            <CardMedia
+              component="img"
+              height=""
+              image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+              alt=""
+            />
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  V
+                </Avatar>
+              }
+              title="조용기 코치"
+              subheader="테니스"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                잘 부탁드립니다!!
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid xs={4} sx={{mr:'auto', ml:'auto'}}>
+          <Card sx={{ maxWidth: 300 }}>
+            <CardMedia
+              component="img"
+              height=""
+              image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+              alt=""
+            />
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  V
+                </Avatar>
+              }
+              title="조용기 코치"
+              subheader="테니스"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                잘 부탁드립니다!!
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid xs={4} sx={{mr:'auto', ml:'auto'}}>
+          <Card sx={{ maxWidth: 300 }}>
+            <CardMedia
+              component="img"
+              height=""
+              image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+              alt=""
+            />
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  V
+                </Avatar>
+              }
+              title="조용기 코치"
+              subheader="테니스"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                잘 부탁드립니다!!
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid xs={4} sx={{mr:'auto', ml:'auto'}}>
+          <Card sx={{ maxWidth: 300 }}>
+            <CardMedia
+              component="img"
+              height=""
+              image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+              alt=""
+            />
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  V
+                </Avatar>
+              }
+              title="조용기 코치"
+              subheader="테니스"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                잘 부탁드립니다!!
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid xs={4} sx={{mr:'auto', ml:'auto'}}>
+          <Card sx={{ maxWidth: 300 }}>
+            <CardMedia
+              component="img"
+              height=""
+              image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+              alt=""
+            />
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  V
+                </Avatar>
+              }
+              title="조용기 코치"
+              subheader="테니스"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                잘 부탁드립니다!!
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid xs={4} sx={{mr:'auto', ml:'auto'}}>
+          <Card sx={{ maxWidth: 300 }}>
+            <CardMedia
+              component="img"
+              height=""
+              image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+              alt=""
+            />
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  V
+                </Avatar>
+              }
+              title="조용기 코치"
+              subheader="테니스"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                잘 부탁드립니다!!
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid xs={4} sx={{mr:'auto', ml:'auto'}}>
+          <Card sx={{ maxWidth: 300 }}>
+            <CardMedia
+              component="img"
+              height=""
+              image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+              alt=""
+            />
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  V
+                </Avatar>
+              }
+              title="조용기 코치"
+              subheader="테니스"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                잘 부탁드립니다!!
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid xs={4} sx={{mr:'auto', ml:'auto'}}>
+          <Card sx={{ maxWidth: 300 }}>
+            <CardMedia
+              component="img"
+              height=""
+              image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+              alt=""
+            />
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  V
+                </Avatar>
+              }
+              title="조용기 코치"
+              subheader="테니스"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                잘 부탁드립니다!!
+              </Typography>
+            </CardContent>
+          </Card>
         </Grid>
       </Grid>
     </Box>

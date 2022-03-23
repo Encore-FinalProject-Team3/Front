@@ -16,9 +16,10 @@ import ModalLogin from './ModalLogin';
 import Token from '../utils/Token';
 
 const pages = [
-  {to: '/FreeBoard', name: '자유게시판'},
-  {to: '/CoachingRequest', name: '코칭신청'},
-  {to: '/', name: '영상'}
+  {to: '/FreeBoard', name: '게시판'},
+  {to: '/ExpertList', name: '강사소개'},
+  {to: '/', name: '영상'},
+  {to: '/CoachingRequest', name: '코칭신청'}
 ];
 const settings = [
   {to:'/MyPage', name :'마이페이지'},
@@ -53,16 +54,6 @@ const ResponsiveAppBar = (props) => {
     <AppBar position="relative" color="primary" enableColorOnDark>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to="/" sx={{ display: { xs: 'none', md: 'flex' } }}>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-          >
-            Fit Box
-          </Typography>
-          </Link>
           <Box sx={{ display: {xs:'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -99,7 +90,17 @@ const ResponsiveAppBar = (props) => {
               ))}
             </Menu>
           </Box>
-          <Link to="/" sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <Link to="/" sx={{ flexGrow:0, display: { xs: 'none', md: 'flex' } }}>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+          >
+            Fit Box
+          </Typography>
+          </Link>
+          <Link to="/">
           <Typography
             variant="h6"
             noWrap
@@ -109,22 +110,22 @@ const ResponsiveAppBar = (props) => {
             Fit Box
           </Typography>
           </Link>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow:1 , display: {xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Link to={page.to}>
               <Button
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{my: 2, color: 'white'}}
               >
                 {page.name}
               </Button>
               </Link>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0, display: {xs: 'flex', md: 'flex' }  }}>
             {props.logined ? <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar />
               </IconButton>
             </Tooltip> : <Button sx={{marginRight:3}} size="small" color="inherit" onClick={goLogin}>로그인/회원가입</Button>}
             

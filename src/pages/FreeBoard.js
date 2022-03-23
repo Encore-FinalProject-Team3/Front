@@ -29,26 +29,15 @@ const columns = [
 ];
 
 
-function createData(idx, title, createId, createDate, hits, likes) {
-  return { idx, title, createId, createDate, hits, likes };
-}
 
-const rows = [
-  createData(1, '안녕하세요', 'jaeny', '2022-03-22', 54, 3),
-  createData(2, 'hello', 'mmimo', '2022-03-22', 12, 1),
-  createData(3, 'bonjour', 'abib', '2022-03-22', 30, 0),
-  createData(4, 'aloha', 'tori', '2022-03-22', 125, 25),
-  createData(5, 'konnitsiha', 'jamie', '2022-03-22', 0, 0),
-  createData(6, 'hello everyone', 'jason', '2022-03-22', 1, 0),
-];
 */
 
 const columns = [
-  { id: 'id', label: 'no', minWidth: 50 },
-  { id: 'title', label: '제목', minWidth: 170 },
-  { id: 'memberEmail', label: '작성자', minWidth: 50 },
-  { id: 'createdAt', label: '작성일', minWidth: 50 },
-  { id: 'hit', label: '조회수', minWidth: 70 },
+  { id: 'id', label: 'no', maxWidth: 50, align: 'center'},
+  { id: 'title', label: '제목', minWidth: 200, align: 'center' },
+  { id: 'memberEmail', label: '작성자', maxWidth: 50, align: 'center' },
+  { id: 'createdAt', label: '작성일', maxWidth: 70, align: 'center' },
+  { id: 'hit', label: '조회수', maxWidth: 50, align: 'center' },
 ];
 
 function TabPanel(props) {
@@ -194,6 +183,7 @@ export default function FreeBoard() {
                   {columns.map((column) => (
                     <TableCell
                       key={column.id}
+                      width={column.width}
                       align={column.align}
                     >
                       {column.label}

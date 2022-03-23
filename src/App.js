@@ -28,6 +28,7 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Token from './utils/Token'
 import Api from './utils/Api';
+import ExpertList from './pages/ExpertList';
 
 
 function App(props) {
@@ -54,6 +55,7 @@ function App(props) {
           <Route path="/" element={<Home />} />
           <Route path="/BoardCard" element={<BoardCard/>} />
           <Route path="/freeBoard" element={<FreeBoard />} />
+          <Route path="/ExpertList" element={<ExpertList/>} />
           <Route path="/usedBoard" element={<UsedBoard />} />
           <Route path='/createBoard' element={<CreateBoard />}/>
           <Route path="/coachingRequest" element={<CoachingRequest/>}/>
