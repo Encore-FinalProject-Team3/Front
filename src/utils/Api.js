@@ -28,7 +28,7 @@ export default {
     })
   },
   getFreeBoard: () => {
-    return axios.get(`/api/board`, options)
+    return axios.get(`/api/board/categories/${id}`, options)
   },
   postFreeBoard: () => {
     return axios.post('/api/board', {title: 'title'}, options)
