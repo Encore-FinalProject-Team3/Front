@@ -46,10 +46,9 @@ function ModalLogin({setLogined}) {
               '<input id="swal-input1" class="swal2-input">',
             focusConfirm: false,
             preConfirm: (password) => {
-              let conPassword = password
               return [
                 login,
-                conPassword,
+                password,
                 document.getElementById('swal-input1').value,
               ]
             }
