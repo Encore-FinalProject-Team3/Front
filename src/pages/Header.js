@@ -49,6 +49,12 @@ const ResponsiveAppBar = (props) => {
   const goLogin = () => {
     navi("/ModalLogin")
   }
+
+  const logout = () => {
+    props.setLogined(false)
+    Token.delToken()
+    navi("/")
+  }
   
   return (
     <AppBar position="relative" color="primary" enableColorOnDark>
@@ -145,11 +151,12 @@ const ResponsiveAppBar = (props) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting.to} onClick={handleCloseUserMenu}>
-                  <Button href={setting.to} textalign="center">{setting.name}</Button>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Link to='/MyPage'><Button extalign="center">마이페이지</Button></Link>
+              </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Button textalign="center" onClick={logout}>로그아웃</Button>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

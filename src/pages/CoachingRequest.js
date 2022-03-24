@@ -10,9 +10,9 @@ import Button from '@mui/material/Button';
 import { Grid } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
-import FreeBoard from './FreeBoard';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import { Link } from "react-router-dom";
 
 const Input = styled('input')({
   display: 'none',
@@ -192,10 +192,10 @@ function CoachingRequest() {
           </label>
         </Grid>
         <Grid item xs={1}>
-          <Button variant="outlined" href='/FreeBoard'>등록</Button>
+        <Link to='/coachingRequested'><Button variant="outlined">등록</Button></Link>
         </Grid>
         <Grid item xs={1}>
-          <Button variant="outlined" onClick={FreeBoard}>취소</Button>
+          <Link to='/ExpertList'><Button variant="outlined" >취소</Button></Link>
         </Grid>
       </Grid>
     </Box>

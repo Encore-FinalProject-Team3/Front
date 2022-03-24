@@ -13,6 +13,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import FreeBoard from './FreeBoard';
+import Api from '../utils/Api';
 
 const Input = styled('input')({
   display: 'none',

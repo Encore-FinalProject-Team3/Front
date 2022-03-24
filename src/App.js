@@ -20,6 +20,7 @@ import CoachingRequest from './pages/CoachingRequest';
 import BoardDetail from './pages/BoardDetail';
 import CreateComment from './pages/CreateComment';
 import CreateMessage from './pages/CreateMessage';
+import CoachingRequested from './pages/CoachingRequested';
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Zoom from '@mui/material/Zoom';
@@ -47,7 +48,7 @@ function App(props) {
   return (
     <div className="App">
       <Container fixed >
-        <Header logined={logined}/>
+        <Header logined={logined} setLogined={setLogined}/>
         <Toolbar id="back-to-top-anchor" sx={{display:'inline'}} />
         <React.Fragment>
         <CssBaseline />
@@ -60,7 +61,8 @@ function App(props) {
           <Route path="/usedBoard" element={<UsedBoard />} />
           <Route path='/createBoard' element={<CreateBoard />}/>
           <Route path="/coachingRequest" element={<CoachingRequest/>}/>
-          <Route path='/boardDetail' element={<BoardDetail />}/>
+          <Route path="/coachingRequested" element={<CoachingRequested/>}/>
+          <Route path='/boardDetail/:boardId' element={<BoardDetail />}/>
           <Route path="/createComment" element={<CreateComment/>}/>
           <Route path='/createMessage' element={<CreateMessage/>}/>
           <Route path="/coaching" element={<Coaching />} />

@@ -48,10 +48,15 @@ function ModalLogin({setLogined}) {
             preConfirm: (password) => {
               const result = [
                 login,
-                password,
                 document.getElementById('swal-input1').value,
+                password,
               ]
-              return result;
+              Api.signUp(...result).then(() => {
+                window.location.href = '/'
+              }).catch(() => {
+                alert ('로그인 실패')
+              })
+              return false;
             }
           })
           
@@ -107,6 +112,15 @@ function ModalLogin({setLogined}) {
                 if (accessToken) {
                   Token.setToken(accessToken)
                   setLogined(true)
+                  Swal.mixin({
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timerProgressBar: true,
+                    icon: 'success',
+                    title: '로그인에 성공하였습니다!',
+                    timer: 1500
+                  })
+                  navi("/")
                 }
                 return result;
               } catch {
@@ -116,18 +130,6 @@ function ModalLogin({setLogined}) {
               }
             }
             })
-        }
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.mixin({
-            position: 'top-end',
-            showConfirmButton: false,
-            timerProgressBar: true,
-            icon: 'success',
-            title: '로그인에 성공하였습니다!',
-            timer: 1500
-          })
-          navi("/")
         }
       })
   }, [])

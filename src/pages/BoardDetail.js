@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -11,10 +11,9 @@ import { TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-import FreeBoard from './FreeBoard';
 import CreateMessage from './CreateMessage';
-
-
+import Api from '../utils/Api';
+import { useEffect } from 'react';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -25,29 +24,39 @@ const Img = styled('img')({
 
 const otherUser = [
   {to: 'FreeBoard', name: '게시글목록'},
-  {to: 'CreateMessage', name: '쪽찌쓰기'},
+  {to: 'CreateMessage', name: '쪽지쓰기'},
 ];
 
-
-
-
 export default function BoardDetail() {
-
   const navi = useNavigate()
-
+  const params = useParams()
+  const [category, setCategory] = React.useState('')
+  const [title, setTitle] = React.useState('')
+  const [content, setContent] = React.useState('')
   const goCreate = () => {
     navi("/CreateComment")
   }
 
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    
-    const handleOpenNavMenu = (event) => {
-      setAnchorElNav(event.currentTarget);
-    };
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
 
-    const handleCloseNavMenu = () => {
-      setAnchorElNav(null);
-    };
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+  const getBoard = async (boardId) => {
+    const response = await Api.getFreeBoardOne(boardId)
+    const detail = response.data?.result?.data
+    if (detail) {
+      setTitle(detail.title)
+      setContent(detail.content)
+    }
+  }
+
+  useEffect(() => {
+    getBoard(params.boardId)
+  }, [])
 
   return (
     <Box>
@@ -64,21 +73,15 @@ export default function BoardDetail() {
           variant='outlined'
           id="filled-read-only-input"
           label="Category"
-          defaultValue="테니스"
-          InputProps={{
-            readOnly: true,
-          }}
+          value={category}
           />
           <div>&nbsp;</div>
           <TextField
           fullWidth
           variant='filled'
           id="filled-read-only-input"
-          label="Title"
-          defaultValue="테니스 입문하고 시퍼요"
-          InputProps={{
-            readOnly: true,
-          }}
+          label=""
+          value={title}
           />
           <div>&nbsp;</div>
           <TextField
@@ -86,12 +89,9 @@ export default function BoardDetail() {
           multiline
           variant='filled'
           id="filled-read-only-input"
-          label="Content"
+          label=""
           minRows={18}
-          defaultValue="안녕하세요 일산 사는 재니임미다 테니스 하고 시퍼요"
-          InputProps={{
-            readOnly: true,
-          }}
+          defaultValue={content}
           />
       </Paper>
       <Button variant='outlined'>수정</Button>&nbsp;<Button variant='outlined'>삭제</Button>

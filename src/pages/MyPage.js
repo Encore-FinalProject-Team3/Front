@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -25,6 +24,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { red } from '@mui/material/colors';
+import Api from '../utils/Api';
+import { useEffect } from 'react';
 
 
 const columns = [
@@ -85,6 +86,8 @@ function a11yProps(index) {
 export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [datas, setDatas] = React.useState(rows)
+  const [userInfo, setUserInfo] = React.useState()
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -97,9 +100,47 @@ export default function StickyHeadTable() {
 
   const [valueVertical, setValueVertical] = React.useState(0);
 
+  const setBoardData = async (n) => {
+    switch (n) {
+      case 0:
+        const result = await Api.getMyBoard(1)
+        //return { idx, title, createId, createDate, hits, likes };
+        if (result.data?.result?.data) {
+          setDatas(
+            result.data.result.data.map(r=>{
+              return {
+                idx: r.id,
+                title: r.title,
+                createId: r.member.memberName,
+                createDate: r.createdAt || '2022-03-24',
+                hits: 0,
+                likes: 0,
+              }
+            })
+          )
+        }
+        break;
+      case 2:
+        setDatas([createData(1, '신청합니다.', 'ADMIN', '2022-03-24', 54, 3)])
+        break;
+      case 3:
+        setDatas([])
+        break;
+      default:
+        setDatas(rows)
+    }
+  }
+
   const handleChangeVertical = (event, newValueVertical) => {
     setValueVertical(newValueVertical);
+    setBoardData(newValueVertical)
   };
+
+  useEffect(() => {
+    setBoardData(0)
+    // api 로 내 정보를 조회 ,, 사용자인지 코치 
+    // setUserInfo()
+  }, [])
 
   return (
     <Box>
@@ -149,8 +190,8 @@ export default function StickyHeadTable() {
               <Tab label="내가 쓴 댓글" {...a11yProps(5)} />
               <Tab label="요청한 코칭" {...a11yProps(6)} />
               <Tab label="도착한 코칭" {...a11yProps(7)} />
-              <Tab label="보낸 쪽찌함" {...a11yProps(8)} />
-              <Tab label="받은 쪽찌함" {...a11yProps(9)} />
+              <Tab label="보낸 쪽지함" {...a11yProps(8)} />
+              <Tab label="받은 쪽지함" {...a11yProps(9)} />
           </Tabs>
         </Grid>
         <Grid item xs={9}>
@@ -170,7 +211,7 @@ export default function StickyHeadTable() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
+                {datas
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (

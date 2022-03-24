@@ -36,4 +36,11 @@ export default {
   getCatetories: () => {
     return axios.get('/api/categories', options)
   },
+  getMyBoard: (id) => {
+    return axios.get(`/api/board/member/${id}`, options)
+  },
+  getFreeBoardOne: (id) => {
+    return axios.get(`/api/board/${id}`, options)
+  },
+  
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -83,11 +83,12 @@ export default function FreeBoard() {
   const [subCategories, setSubCategories] = React.useState([])
   const [valueHorizon, setValueHorizon] = React.useState(0)
   const [valueVertical, setValueVertical] = React.useState(0)
+  const navi = useNavigate()
 
   const getBoardData = async (category) => {
     try {
       console.log('getBoardData', category)
-      const result = await Api.getFreeBoard()
+      const result = await Api.getFreeBoard(category)
       const datas = result.data?.result?.data;
       if (datas) {
         setRows(
@@ -138,6 +139,11 @@ export default function FreeBoard() {
     setValueHorizon(idx);
     getBoardData(categories[valueVertical].children[idx].id)
   };
+  const clickDetail = (column, row) => {
+    if (column.id === 'title') {
+      navi(`/boardDetail/${row.id}`)
+    }
+  }
 
   useEffect(() => {
     getCategories()
@@ -200,7 +206,7 @@ export default function FreeBoard() {
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
-                            <TableCell key={column.id} align={column.align}>
+                            <TableCell key={column.id} align={column.align} onClick={() => clickDetail(column, row)}>
                               {column.format && typeof value === 'number'
                                 ? column.format(value)
                                 : value}
