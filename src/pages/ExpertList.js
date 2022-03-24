@@ -302,8 +302,7 @@ export default function ExpertList() {
                <CardMedia
                  component="img"
                  height="300"
-                 image="https://s3.ap-northeast-2.amazonaws.com/wizschool-images/profile-image-07.png"
-                 alt=""
+                 image="src/pages/expert_JK.jpg"
                />
                <CardHeader
                  avatar={
