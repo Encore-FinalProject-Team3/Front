@@ -16,10 +16,7 @@ import 'sweetalert2/src/sweetalert2.scss'
       '<input id="swal-input1" class="swal2-input">',
     focusConfirm: false,
     preConfirm: (password) => {
-      return [
-        password,
-        document.getElementById('swal-input1').value
-      ]
+      return Swal.fire(JSON.stringify(password) + JSON.stringify(document.getElementById('swal-input1').value))
     }
   })
   
