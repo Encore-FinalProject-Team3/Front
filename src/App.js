@@ -29,6 +29,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Token from './utils/Token'
 import Api from './utils/Api';
 import ExpertList from './pages/ExpertList';
+import ModalInputEx from './common/ModalInputEx'
 
 
 function App(props) {
@@ -65,6 +66,7 @@ function App(props) {
           <Route path="/coaching" element={<Coaching />} />
           <Route path="/myPage" element={<MyPage />} />
           <Route path="/registUser" element={<RegistUser />} />
+          <Route path="/modalInputEx" element={<ModalInputEx/>} />
         </Routes>
         <ScrollTop {...props}>
             <Fab color="primary" size="small" aria-label="scroll back to top">

@@ -38,17 +38,19 @@ function ModalLogin({setLogined}) {
           // )
           const { value: formValues } = await Swal.fire({
             title: '존재하지 않는 회원입니다',
+            input:'password',
+            inputLabel:'비밀번호를 입력해 주세요!',
             html:
-              '아래 양식을 채워 회원가입을 완료하세요!'+
-              '가입하실 이메일 주소<input id="swal-input1" class="swal2-email">'+
-              '가입자 성함<input id="swal-input2" class="swal2-input">'+
-              '비밀번호<input id="swal-input3" class="swal2-password">',
+              `메일주소 ${login} 으로 가입합니다!<br/><br/>`+
+              '가입자 분의 성함을 입력해 주세요!'+
+              '<input id="swal-input1" class="swal2-input">',
             focusConfirm: false,
-            preConfirm: () => {
+            preConfirm: (password) => {
+              let conPassword = password
               return [
+                login,
+                conPassword,
                 document.getElementById('swal-input1').value,
-                document.getElementById('swal-input2').value,
-                document.getElementById('swal-input3').value,
               ]
             }
           })
