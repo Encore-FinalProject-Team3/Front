@@ -113,19 +113,19 @@ function ModalLogin({setLogined}) {
                 )
               }
             }
-            }).then((result) => {
-                  if (result.isConfirmed) {
-                    Swal.mixin({
-                      position: 'top-end',
-                      showConfirmButton: false,
-                      timerProgressBar: true,
-                      icon: 'success',
-                      title: '로그인에 성공하였습니다!',
-                      timer: 1500
-                    })
-                    navi("/")
-                  }
-                })
+            })
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.mixin({
+            position: 'top-end',
+            showConfirmButton: false,
+            timerProgressBar: true,
+            icon: 'success',
+            title: '로그인에 성공하였습니다!',
+            timer: 1500
+          })
+          navi("/")
         }
       })
   }, [])
