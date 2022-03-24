@@ -18,7 +18,7 @@ import Token from '../utils/Token';
 const pages = [
   {to: '/FreeBoard', name: '게시판'},
   {to: '/ExpertList', name: '강사소개'},
-  {to: '/', name: '영상'},
+  {to: '/mediaPage', name: '영상'},
   {to: '/CoachingRequest', name: '코칭신청'}
 ];
 const settings = [

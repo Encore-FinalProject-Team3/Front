@@ -16,7 +16,6 @@ import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import CoachingRequest from './CoachingRequest';
 
 
 function TabPanel(props) {
@@ -79,8 +78,6 @@ export default function ExpertList() {
   return (
     <Box sx={{mr: 'auto', ml: 'auto'}}>
       <Grid container>
-        <Grid item xs={2}></Grid>
-        <Grid item xs={10}>
           <Tabs
           value={valueHorizon}
           onChange={handleChangeHorizontal}
@@ -89,11 +86,17 @@ export default function ExpertList() {
           allowScrollButtonsMobile
           aria-label="scrollable force tabs example"
           >
-            <Tab label="인기 강사" {...a11yProps(0)} />
-            <Tab label="신규 강사" {...a11yProps(1)} />
-            <Tab label="이달의 강사" {...a11yProps(2)} />
+            <Tab label="골프" {...a11yProps(0)} />
+            <Tab label="테니스" {...a11yProps(1)} />
+            <Tab label="탁구" {...a11yProps(2)} />
+            <Tab label="농구" {...a11yProps(3)} />
+            <Tab label="축구" {...a11yProps(4)} />
+            <Tab label="야구" {...a11yProps(5)} />
+            <Tab label="스쿼시" {...a11yProps(6)} />
+            <Tab label="필라테스" {...a11yProps(7)} />
+            <Tab label="요가" {...a11yProps(8)} />
+            <Tab label="배구" {...a11yProps(9)} />
           </Tabs>
-        </Grid>
       </Grid>
       <div>&nbsp;</div>
       <Grid container spacing={3}>
@@ -103,9 +106,8 @@ export default function ExpertList() {
              <CardActionArea>
                <CardMedia
                  component="img"
-                 height=""
+                 height="300"
                  image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
-                 alt=""
                />
                <CardHeader
                  avatar={
@@ -113,7 +115,7 @@ export default function ExpertList() {
                      V
                    </Avatar>
                  }
-                 title="조용기 코치"
+                 title="조용기"
                  subheader="테니스"
                  />
                <CardContent>
@@ -131,8 +133,8 @@ export default function ExpertList() {
              <CardActionArea>
                <CardMedia
                  component="img"
-                 height=""
-                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+                 height="300"
+                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/527827867fadea4b94d05a85bb97a602.jpg"
                  alt=""
                />
                <CardHeader
@@ -141,12 +143,12 @@ export default function ExpertList() {
                      V
                    </Avatar>
                  }
-                 title="조용기 코치"
-                 subheader="테니스"
+                 title="써니"
+                 subheader="골프"
                  />
                <CardContent>
                  <Typography variant="body2" color="text.secondary">
-                   잘 부탁드립니다!!
+                   더 쉽고 재밌는 골프! 함께해요!
                  </Typography>
                </CardContent>
            `</CardActionArea>
@@ -159,8 +161,8 @@ export default function ExpertList() {
              <CardActionArea>
                <CardMedia
                  component="img"
-                 height=""
-                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+                 height="300"
+                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/d91c5c9ef845f0bbc504c809daac6d3c.jpg"
                  alt=""
                />
                <CardHeader
@@ -169,12 +171,12 @@ export default function ExpertList() {
                      V
                    </Avatar>
                  }
-                 title="조용기 코치"
-                 subheader="테니스"
+                 title="샐리"
+                 subheader="배드민턴"
                  />
                <CardContent>
                  <Typography variant="body2" color="text.secondary">
-                   잘 부탁드립니다!!
+                   배드민턴 잘하는 법! 맡겨주세요!
                  </Typography>
                </CardContent>
            `</CardActionArea>
@@ -187,8 +189,8 @@ export default function ExpertList() {
              <CardActionArea>
                <CardMedia
                  component="img"
-                 height=""
-                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+                 height="300"
+                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/4f578f73081e47cc804aca46faca0beb.jpg"
                  alt=""
                />
                <CardHeader
@@ -197,12 +199,12 @@ export default function ExpertList() {
                      V
                    </Avatar>
                  }
-                 title="조용기 코치"
-                 subheader="테니스"
+                 title="리차드"
+                 subheader="탁구"
                  />
                <CardContent>
                  <Typography variant="body2" color="text.secondary">
-                   잘 부탁드립니다!!
+                   탁구는 저에게 배우시면 됩니다!
                  </Typography>
                </CardContent>
            `</CardActionArea>
@@ -215,8 +217,8 @@ export default function ExpertList() {
              <CardActionArea>
                <CardMedia
                  component="img"
-                 height=""
-                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+                 height="300"
+                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/341484e0e7c3c203800717f3a5530838.jpg"
                  alt=""
                />
                <CardHeader
@@ -225,12 +227,12 @@ export default function ExpertList() {
                      V
                    </Avatar>
                  }
-                 title="조용기 코치"
-                 subheader="테니스"
+                 title="블리"
+                 subheader="필라테스"
                  />
                <CardContent>
                  <Typography variant="body2" color="text.secondary">
-                   잘 부탁드립니다!!
+                   전국민 속성 다이어트의 시작!
                  </Typography>
                </CardContent>
            `</CardActionArea>
@@ -243,8 +245,8 @@ export default function ExpertList() {
              <CardActionArea>
                <CardMedia
                  component="img"
-                 height=""
-                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+                 height="300"
+                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/d106080d67a3d8814099ba069ea5f576.jpg"
                  alt=""
                />
                <CardHeader
@@ -253,12 +255,12 @@ export default function ExpertList() {
                      V
                    </Avatar>
                  }
-                 title="조용기 코치"
-                 subheader="테니스"
+                 title="다온"
+                 subheader="요가"
                  />
                <CardContent>
                  <Typography variant="body2" color="text.secondary">
-                   잘 부탁드립니다!!
+                   보다 건강한 몸을 위해! 시작하세요!
                  </Typography>
                </CardContent>
            `</CardActionArea>
@@ -271,8 +273,8 @@ export default function ExpertList() {
              <CardActionArea>
                <CardMedia
                  component="img"
-                 height=""
-                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+                 height="300"
+                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/69913e52f0cb4c9f19e4b8d1d847ef94.jpg"
                  alt=""
                />
                <CardHeader
@@ -281,12 +283,12 @@ export default function ExpertList() {
                      V
                    </Avatar>
                  }
-                 title="조용기 코치"
-                 subheader="테니스"
+                 title="케이"
+                 subheader="배구"
                  />
                <CardContent>
                  <Typography variant="body2" color="text.secondary">
-                   잘 부탁드립니다!!
+                   강스파이크!! 가르쳐드립니다.
                  </Typography>
                </CardContent>
            `</CardActionArea>
@@ -299,8 +301,8 @@ export default function ExpertList() {
              <CardActionArea>
                <CardMedia
                  component="img"
-                 height=""
-                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+                 height="300"
+                 image="https://s3.ap-northeast-2.amazonaws.com/wizschool-images/profile-image-07.png"
                  alt=""
                />
                <CardHeader
@@ -309,12 +311,12 @@ export default function ExpertList() {
                      V
                    </Avatar>
                  }
-                 title="조용기 코치"
-                 subheader="테니스"
+                 title="로지"
+                 subheader="스쿼시"
                  />
                <CardContent>
                  <Typography variant="body2" color="text.secondary">
-                   잘 부탁드립니다!!
+                   드라마 처럼 예쁘게 치고 싶죠? come on!
                  </Typography>
                </CardContent>
            `</CardActionArea>
@@ -327,8 +329,8 @@ export default function ExpertList() {
              <CardActionArea>
                <CardMedia
                  component="img"
-                 height=""
-                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/c578507fd95ab15f089d1b8e5050a64a.jpg"
+                 height="300"
+                 image="https://wizschool-images.s3.ap-northeast-2.amazonaws.com/3acae086c62d176250d85d8f0107bf87.jpg"
                  alt=""
                />
                <CardHeader
@@ -337,12 +339,12 @@ export default function ExpertList() {
                      V
                    </Avatar>
                  }
-                 title="조용기 코치"
-                 subheader="테니스"
+                 title="세이디"
+                 subheader="골프"
                  />
                <CardContent>
                  <Typography variant="body2" color="text.secondary">
-                   잘 부탁드립니다!!
+                   저와 함께 필드까지 가보시죠!
                  </Typography>
                </CardContent>
            `</CardActionArea>

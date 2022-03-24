@@ -93,7 +93,7 @@ export default function FreeBoard() {
       if (datas) {
         setRows(
           datas.map(r=>{
-            r['memberEmail'] = r.member.email
+            r['memberEmail'] = r.member.memberName
             return r
           })
         )

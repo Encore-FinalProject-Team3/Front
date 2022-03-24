@@ -16,7 +16,7 @@ export default function MediaCard() {
         component="img"
         width="400"
         height="300"
-        image="https://i.ytimg.com/an_webp/8ofQSckaniE/mqdefault_6s.webp?du=3000&sqp=CNWm5pEG&rs=AOn4CLCr3sd4IPWLR5HVx16LrVdyKLkOig"
+        image="https://i.ytimg.com/an_webp/8ofQSckaniE/mqdefault_6s.webp?du=3000&sqp=CNL38pEG&rs=AOn4CLDGGsj0G2buNbZP_qbYKGPZojSjxw"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

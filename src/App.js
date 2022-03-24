@@ -31,6 +31,7 @@ import Token from './utils/Token'
 import Api from './utils/Api';
 import ExpertList from './pages/ExpertList';
 import ModalInputEx from './common/ModalInputEx'
+import MediaPage from './pages/MediaPage';
 
 
 function App(props) {
@@ -69,6 +70,7 @@ function App(props) {
           <Route path="/myPage" element={<MyPage />} />
           <Route path="/registUser" element={<RegistUser />} />
           <Route path="/modalInputEx" element={<ModalInputEx/>} />
+          <Route path="/mediaPage" element={<MediaPage/>} />
         </Routes>
         <ScrollTop {...props}>
             <Fab color="primary" size="small" aria-label="scroll back to top">
