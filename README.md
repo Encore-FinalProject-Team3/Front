@@ -79,7 +79,8 @@
 - IDEA 
     - intelliJ(Ultimate + Community),
     - VSCode
-- Framework : Spring Boot + JPA + React
+- Library : React 
+- Framework : Spring Boot + JPA
 - DB : MySQL
 - 협업
     - Notion
