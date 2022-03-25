@@ -137,20 +137,10 @@ function CreateBoard() {
         <FormControl fullWidth>
             <InputLabel id="demo-multiple-chip-label">종목선택</InputLabel>
             <Select
-              labelId="demo-multiple-chip-label"
-              id="demo-multiple-chip"
-              multiple
-              value={categoryName}
-              onChange={categoryHandleChange}
-              input={<OutlinedInput id="select-multiple-chip" label="종목선택" />}
-              renderValue={(selected) => (
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </Box>
-              )}
-              MenuProps={MenuProps}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="종목선택"
+                onChange={handleChange}
             >
               {category.map((category) => (
                 <MenuItem
@@ -168,21 +158,11 @@ function CreateBoard() {
           <FormControl fullWidth>
             <InputLabel id="demo-multiple-chip-label">게시판선택</InputLabel>
             <Select
-              labelId="demo-multiple-chip-label"
-              id="demo-multiple-chip"
-              multiple
-              value={personName}
-              onChange={handleChange}
-              input={<OutlinedInput id="select-multiple-chip" label="강사선택" />}
-              renderValue={(selected) => (
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </Box>
-              )}
-              MenuProps={MenuProps}
-            >
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="게시판선택"
+                onChange={handleChange}
+              >
               {names.map((name) => (
                 <MenuItem
                   key={name}
@@ -199,20 +179,10 @@ function CreateBoard() {
           <FormControl fullWidth>
             <InputLabel id="demo-multiple-chip-label">말머리선택</InputLabel>
             <Select
-              labelId="demo-multiple-chip-label"
-              id="demo-multiple-chip"
-              multiple
-              value={headerName}
-              onChange={headerHandleChange}
-              input={<OutlinedInput id="select-multiple-chip" label="말머리선택" />}
-              renderValue={(selected) => (
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </Box>
-              )}
-              MenuProps={MenuProps}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="말머리선택"
+                onChange={handleChange}
             >
               {headers.map((header) => (
                 <MenuItem

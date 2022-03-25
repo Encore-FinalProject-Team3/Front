@@ -110,20 +110,10 @@ function CoachingRequest() {
           <FormControl fullWidth>
               <InputLabel id="demo-multiple-chip-label">종목선택</InputLabel>
               <Select
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
-                multiple
-                value={categoryName}
-                onChange={categoryHandleChange}
-                input={<OutlinedInput id="select-multiple-chip" label="종목선택" />}
-                renderValue={(selected) => (
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </Box>
-                )}
-                MenuProps={MenuProps}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="종목선택"
+                onChange={handleChange}
               >
                 {category.map((category) => (
                   <MenuItem
@@ -141,20 +131,10 @@ function CoachingRequest() {
             <FormControl fullWidth>
               <InputLabel id="demo-multiple-chip-label">강사선택</InputLabel>
               <Select
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
-                multiple
-                value={personName}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="강사선택"
                 onChange={handleChange}
-                input={<OutlinedInput id="select-multiple-chip" label="강사선택" />}
-                renderValue={(selected) => (
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </Box>
-                )}
-                MenuProps={MenuProps}
               >
                 {names.map((name) => (
                   <MenuItem
